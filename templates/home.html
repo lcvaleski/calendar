@@ -14,7 +14,6 @@
             margin: 10px;
             padding: 20px;
             border: 1px solid black;
-            border-radius: 5px;
             width: 50px;
             height: 50px;
             text-align: center;
@@ -22,7 +21,19 @@
     </style>
 </head>
 <body>
-    <h1>{{ month_name }}</h1>
+    <h2>Exercise</h2>
+    <div class="container">
+        {% for day in days %}
+            <div class="day">{{ day }}</div>
+        {% endfor %}
+    </div>
+    <h2>Meditation</h2>
+    <div class="container">
+        {% for day in days %}
+            <div class="day">{{ day }}</div>
+        {% endfor %}
+    </div>
+    <h2>Bass</h2>
     <div class="container">
         {% for day in days %}
             <div class="day">{{ day }}</div>
