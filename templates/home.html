@@ -46,5 +46,31 @@
             <div class="day" onclick="highlight(event)">{{ day }}</div>
         {% endfor %}
     </div>
+    <script>
+        document.querySelectorAll(".day").forEach(function (dayElement) {
+        dayElement.addEventListener("click", function (event) {
+            const day = event.target;
+            const habit = day.parentElement.previousElementSibling.textContent;
+            const date = day.textContent;
+            const status = day.classList.toggle('highlight');
+
+            const year = new Date().getFullYear();
+            const month = new Date().getMonth() + 1;  // JavaScript months are 0-indexed.
+            const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${date.padStart(2, '0')}`;
+
+            fetch('/update-habit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    habit: habit,
+                    status: status,
+                    date: formattedDate  // Send the formatted date
+                })
+            });
+        });
+    });
+    </script>
 </body>
 </html>
